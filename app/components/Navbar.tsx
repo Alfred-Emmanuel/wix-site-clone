@@ -1,5 +1,5 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 
 function Navbar() {
@@ -10,15 +10,27 @@ function Navbar() {
         setMenu(prevMenu => !prevMenu);
     }
 
+    useEffect(() => {
+        if (menu) {
+            document.body.style.overflow = 'hidden'
+        } else {
+            document.body.style.overflow = 'auto'
+        }
+
+        return () => {
+            document.body.style.overflow = 'auto'
+        }
+    }, [menu])
+
     return (
-        <nav className='flex items-center justify-between md:border-b border-white mx-5 md:mx-20 md:pt-10 md:pb-5 py-5'>
+        <nav className=' relative z-20 flex items-center justify-between md:border-b border-white mx-5 md:mx-20 md:pt-10 md:pb-5 py-5'>
             <h1 className='text-lg font-medium'>NextGen Business Innovators</h1>
             <div className='md:flex items-center gap-8 hidden '>
-                <Link href={"#"} className='text-white hover:text-[#f1e75b]'>Home</Link>
-                <Link href={"#"} className='text-white hover:text-[#f1e75b]'>Blog</Link>
-                <Link href={"#"} className='text-white hover:text-[#f1e75b]'>Book Online</Link>
-                <Link href={"#"} className='text-white hover:text-[#f1e75b]'>Plans & Pricing</Link>
-                <div className='relative text-white hover:text-[#f1e75b]'>
+                <Link href={"#"} className='text-white hover:text-[#effe8a]'>Home</Link>
+                <Link href={"#"} className='text-white hover:text-[#effe8a]'>Blog</Link>
+                <Link href={"#"} className='text-white hover:text-[#effe8a]'>Book Online</Link>
+                <Link href={"#"} className='text-white hover:text-[#effe8a]'>Plans & Pricing</Link>
+                <div className='relative text-white hover:text-[#effe8a]'>
                     <input
                         placeholder='Search...' 
                         type='text'
@@ -32,7 +44,7 @@ function Navbar() {
             <svg onClick={toggleMenu} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-10 md:hidden">
                 <path fillRule="evenodd" d="M3 6.75A.75.75 0 0 1 3.75 6h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 6.75ZM3 12a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75A.75.75 0 0 1 3 12Zm0 5.25a.75.75 0 0 1 .75-.75h16.5a.75.75 0 0 1 0 1.5H3.75a.75.75 0 0 1-.75-.75Z" clipRule="evenodd" />
             </svg>
-            <div className={`${menu ? 'block' : 'hidden'} md:hidden absolute top-0 left-0 bg-black text-white w-full h-screen`}>
+            <div className={`${menu ? 'block' : 'hidden'} md:hidden overflow-hidden absolute top-0 left-0 bg-black text-white w-full h-screen`}>
                 <div className='flex flex-col items-center pt-28 relative h-full w-full'>
                     <svg onClick={toggleMenu} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-10 absolute top-10 right-3">
                         <path fillRule="evenodd" d="M5.47 5.47a.75.75 0 0 1 1.06 0L12 10.94l5.47-5.47a.75.75 0 1 1 1.06 1.06L13.06 12l5.47 5.47a.75.75 0 1 1-1.06 1.06L12 13.06l-5.47 5.47a.75.75 0 0 1-1.06-1.06L10.94 12 5.47 6.53a.75.75 0 0 1 0-1.06Z" clipRule="evenodd" />
