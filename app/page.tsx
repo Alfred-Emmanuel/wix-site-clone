@@ -119,7 +119,7 @@ const newsContent = [
         </div>
       </div>
       <div className="md:pt-12 md:pb-20 px-5 md:px-20">
-        <h1 className="font-semibold md:text-6xl text-3xl capitalize text-white w-[25%]">Hello. We're NextGen Business Innovators</h1>
+        <h1 className="font-semibold md:text-6xl text-3xl capitalize text-white w-[25%]">Hello. We&apos;re NextGen Business Innovators</h1>
         <div className="mt-5 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-10">
           <VideoComponent />
         </div>
