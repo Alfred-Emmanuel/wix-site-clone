@@ -5,6 +5,7 @@ import HeroBg2 from "./assets/pc-bg-2.jpg"
 import NewsImg from "./assets/news-img-1.jpg"
 import NewsImg2 from "./assets/news-image-2.jpg"
 import NewsImg3 from "./assets/news-img-3.jpg"
+import { VideoComponent } from "./components/VideoComponents";
 
 export default function Home() {
 const newsContent = [
@@ -79,8 +80,48 @@ const newsContent = [
                 </div>
               </div>
             ))
-          }
-          
+          }  
+        </div>
+      </div>
+      <div className="py-10 bg-white px-5 md:px-20">
+        <h1 className="font-semibold md:text-6xl text-3xl capitalize text-black">Consulting Services</h1>
+        <div className="mt-10 flex flex-col md:flex-row items-center justify-center gap-5 text-black">
+          <div className="w-[90%] md:w-1/3 px-8 md:border border-black py-7">
+            <h1 className="text-xl text-gray-700">Business Solutions Consulting</h1>
+            <div className="mt-7 border-t border-black py-4 flex flex-col gap-4">
+              <div>
+                <p className="md:hidden">1hr</p>
+                <p>$180</p>
+              </div>
+              <h5 className="border border-black self-start px-4 py-2">Book Now</h5>
+            </div>
+          </div>
+          <div className="w-[90%] md:w-1/3 px-8 md:border border-black py-7">
+            <h1 className="text-xl text-gray-700">Tech Product Consulting</h1>
+            <div className="mt-7 border-t border-black py-4 flex flex-col gap-4">
+              <div>
+                <p className="md:hidden">1hr</p>
+                <p>$180</p>
+              </div>
+              <h5 className="border border-black self-start px-4 py-2">Book Now</h5>
+            </div>
+          </div>
+          <div className="w-[90%] md:w-1/3 px-8 md:border border-black py-7">
+            <h1 className="text-xl text-gray-700">Business Strategy Consulting</h1>
+            <div className="mt-7 border-t border-black py-4 flex flex-col gap-4">
+              <div>
+                <p className="md:hidden">1hr</p>
+                <p>$180</p>
+              </div>
+              <h5 className="border border-black self-start px-4 py-2">Book Now</h5>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div className="md:pt-12 md:pb-20 px-5 md:px-20">
+        <h1 className="font-semibold md:text-6xl text-3xl capitalize text-white w-[25%]">Hello. We're NextGen Business Innovators</h1>
+        <div className="mt-5 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-10">
+          <VideoComponent />
         </div>
       </div>
     </main>
