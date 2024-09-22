@@ -26,8 +26,8 @@ function Navbar() {
         <nav className=' relative z-20 flex items-center justify-between md:border-b border-white mx-5 md:mx-20 md:pt-10 md:pb-5 py-5'>
             <h1 className='text-lg font-medium'>NextGen Business Innovators</h1>
             <div className='md:flex items-center gap-8 hidden '>
-                <Link href={"#"} className='text-white hover:text-[#effe8a]'>Home</Link>
-                <Link href={"#"} className='text-white hover:text-[#effe8a]'>Blog</Link>
+                <Link href={"/"} className='text-white hover:text-[#effe8a]'>Home</Link>
+                <Link href={"/blog"} className='text-white hover:text-[#effe8a]'>Blog</Link>
                 <Link href={"#"} className='text-white hover:text-[#effe8a]'>Book Online</Link>
                 <Link href={"#"} className='text-white hover:text-[#effe8a]'>Plans & Pricing</Link>
                 <div className='relative text-white hover:text-[#effe8a]'>
@@ -60,7 +60,7 @@ function Navbar() {
                         </svg>
                     </div>
                     <div className='flex mt-10 flex-col items-center justify-center gap-5'>
-                        <Link href={"#"} className='font-semibold text-2xl'>Home</Link>
+                        <Link href={"/blog"} className='font-semibold text-2xl'>Home</Link>
                         <Link href={"#"} className='font-semibold text-2xl'>Blog</Link>
                         <Link href={"#"} className='font-semibold text-2xl'>Book Online</Link>
                         <Link href={"#"} className='font-semibold text-2xl'>Plans & Pricing</Link>

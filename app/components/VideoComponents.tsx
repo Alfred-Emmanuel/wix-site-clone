@@ -1,9 +1,9 @@
-// import Video from "../assets/nextgen-vid.mp4"
+import Video from "../assets/nextgen-vid.mp4"
 
 export function VideoComponent() {
   return (
-    <video width="320" height="240" controls preload="none">
-      <source src={`../assets/nextgen-vid.mp4`} type="video/mp4" />
+    <video width="600" className="h-96" controls preload="none">
+      <source src={Video} type="video/mp4" />
       {/* <track
         src="/path/to/captions.vtt"
         kind="subtitles"

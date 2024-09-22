@@ -1,4 +1,5 @@
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 import Image from "next/image";
 import HeroBg1 from "./assets/pc-bg-1.jpg"
 import HeroBg2 from "./assets/pc-bg-2.jpg"
@@ -86,44 +87,91 @@ const newsContent = [
       <div className="py-10 bg-white px-5 md:px-20">
         <h1 className="font-semibold md:text-6xl text-3xl capitalize text-black">Consulting Services</h1>
         <div className="mt-10 flex flex-col md:flex-row items-center justify-center gap-5 text-black">
-          <div className="w-[90%] md:w-1/3 px-8 md:border border-black py-7">
-            <h1 className="text-xl text-gray-700">Business Solutions Consulting</h1>
+          <div className="w-full md:w-1/3 px-8 md:border border-black py-7">
+            <h1 className="text-2xl md:text-xl text-gray-700">Business Solutions Consulting</h1>
+            <p className="mt-5 md:hidden text-[1.05rem]">Empower your business with efficient and productive solutions.</p>
             <div className="mt-7 border-t border-black py-4 flex flex-col gap-4">
               <div>
-                <p className="md:hidden">1hr</p>
-                <p>$180</p>
+                <p className="md:hidden text-[1.05rem] mb-2">1hr</p>
+                <p className="text-[1.05rem]">$180</p>
               </div>
-              <h5 className="border border-black self-start px-4 py-2">Book Now</h5>
+              <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2">Book Now</h5>
             </div>
           </div>
-          <div className="w-[90%] md:w-1/3 px-8 md:border border-black py-7">
-            <h1 className="text-xl text-gray-700">Tech Product Consulting</h1>
+          <div className="w-full md:w-1/3 px-8 md:border border-black py-7">
+            <h1 className="text-2xl md:text-xl text-gray-700">Tech Product Consulting</h1>
+            <p className="mt-5 md:hidden text-[1.05rem]">Empower your tech products with cutting-edge insights.</p>
             <div className="mt-7 border-t border-black py-4 flex flex-col gap-4">
               <div>
-                <p className="md:hidden">1hr</p>
-                <p>$180</p>
+                <p className="md:hidden text-[1.05rem] mb-2">1hr</p>
+                <p className="text-[1.05rem]">$180</p>
               </div>
-              <h5 className="border border-black self-start px-4 py-2">Book Now</h5>
+              <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2">Book Now</h5>
             </div>
           </div>
-          <div className="w-[90%] md:w-1/3 px-8 md:border border-black py-7">
-            <h1 className="text-xl text-gray-700">Business Strategy Consulting</h1>
+          <div className="w-full md:w-1/3 px-8 md:border border-black py-7">
+            <h1 className="text-2xl md:text-xl text-gray-700">Business Strategy Consulting</h1>
+            <p className="mt-5 md:hidden text-[1.05rem]">Transform your business landscape with strategic consulting.</p>
             <div className="mt-7 border-t border-black py-4 flex flex-col gap-4">
               <div>
-                <p className="md:hidden">1hr</p>
-                <p>$180</p>
+                <p className="md:hidden text-[1.05rem] mb-2">1hr</p>
+                <p className="text-[1.05rem]">$180</p>
               </div>
-              <h5 className="border border-black self-start px-4 py-2">Book Now</h5>
+              <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2">Book Now</h5>
             </div>
           </div>
         </div>
       </div>
-      <div className="md:pt-12 md:pb-20 px-5 md:px-20">
+      <div className="pt-10 pb-20 md:pt-12 md:pb-28 px-5 md:px-20">
         <h1 className="font-semibold md:text-6xl text-3xl capitalize text-white w-[25%]">Hello. We&apos;re NextGen Business Innovators</h1>
-        <div className="mt-5 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-10">
-          <VideoComponent />
+        <div className="mt-5 md:mt-10 flex flex-col md:flex-row justify-center gap-4 md:gap-10">
+          <div className=" w-[90%] md:w-[55%]">
+            <VideoComponent />
+          </div>
+          <div className="flex flex-col gap-5 w-[90%] md:w-[40%]">
+            <p className="md:w-[90%] text-balance text-[1.05rem] leading-7">We are a Austin-based Information Technology Consulting Agency that helps 
+              businesses across industries thrive. Our team of experts specializes in 
+              providing tech product, business, and IT consulting services to enhance operational 
+              efficiency and market competitiveness. We offer customized solutions to address 
+              your company's strengths, weaknesses, and opportunities. With our help, you can keep
+               your business competitive, successful, and growth-oriented.
+            </p>
+            <button className="bg-[#effe8a] text-black self-start px-5 py-3 rounded-full border border-transparent transition-all duration-300 ease-in-out hover:bg-transparent hover:border-[#effe8a] hover:text-[#effe8a]">
+              Learn More
+            </button>
+          </div>
         </div>
       </div>
+      <div className="pt-10 pb-20 md:pt-20 md:px-20 px-5 bg-[#effe8a] text-black">
+        <h1 className="font-semibold md:text-6xl text-3xl capitalize">What Our Clients Say</h1>
+        <div className="flex w-[90%] md:w-auto flex-col md:flex-row items-center justify-center gap-10 md:gap-48 mt-5 md:mt-12">
+          <div className="flex justify-center gap-5 md:gap-7 flex-col w-[95%] md:w-auto">
+            <p className="text-balance leading-7 text-xl md:text-[1rem] ">
+              “NextGen Business Innovators helped me take my business 
+              to the next level with their innovative solutions. I highly
+               recommend them to anyone looking to enhance their operational efficiency.”
+            </p>
+            <p className="text-gray-700 text-lg md:text-[1rem]">Robbie White</p>
+          </div>
+          <div className="flex justify-center gap-5 md:gap-7 flex-col w-[95%] md:w-auto">
+            <p className="text-balance leading-7 text-xl md:text-[1rem]">             
+              “I cannot recommend NextGen Business Innovators enough!
+               Their team's expertise and professionalism are unmatched, 
+               and their solutions have truly transformed my business.”
+            </p>
+            <p className="text-gray-700 text-lg md:text-[1rem]">Sandy Williams</p>
+          </div>
+          <div className="flex justify-center gap-5 md:gap-7 flex-col w-[95%] md:w-auto">
+            <p className="text-balance leading-7 text-xl md:text-[1rem]">             
+              “Working with NextGen Business Innovators was a game-changer
+               for my business. Their insights and guidance helped me achieve
+              my goals and stay ahead of the competition.”
+            </p>
+            <p className="text-gray-700 text-lg md:text-[1rem]">Quinn Davis</p>
+          </div>
+        </div>
+      </div>
+      <Footer />
     </main>
   );
 }
