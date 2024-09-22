@@ -133,7 +133,7 @@ const newsContent = [
               businesses across industries thrive. Our team of experts specializes in 
               providing tech product, business, and IT consulting services to enhance operational 
               efficiency and market competitiveness. We offer customized solutions to address 
-              your company's strengths, weaknesses, and opportunities. With our help, you can keep
+              your company&apos;s strengths, weaknesses, and opportunities. With our help, you can keep
                your business competitive, successful, and growth-oriented.
             </p>
             <button className="bg-[#effe8a] text-black self-start px-5 py-3 rounded-full border border-transparent transition-all duration-300 ease-in-out hover:bg-transparent hover:border-[#effe8a] hover:text-[#effe8a]">
@@ -156,7 +156,7 @@ const newsContent = [
           <div className="flex justify-center gap-5 md:gap-7 flex-col w-[95%] md:w-auto">
             <p className="text-balance leading-7 text-xl md:text-[1rem]">             
               “I cannot recommend NextGen Business Innovators enough!
-               Their team's expertise and professionalism are unmatched, 
+               Their team&apos;s expertise and professionalism are unmatched, 
                and their solutions have truly transformed my business.”
             </p>
             <p className="text-gray-700 text-lg md:text-[1rem]">Sandy Williams</p>
