@@ -28,8 +28,8 @@ function Navbar() {
             <div className='md:flex items-center gap-8 hidden '>
                 <Link href={"/"} className='text-white hover:text-[#effe8a]'>Home</Link>
                 <Link href={"/blog"} className='text-white hover:text-[#effe8a]'>Blog</Link>
-                <Link href={"#"} className='text-white hover:text-[#effe8a]'>Book Online</Link>
-                <Link href={"#"} className='text-white hover:text-[#effe8a]'>Plans & Pricing</Link>
+                <Link href={"/bookings"} className='text-white hover:text-[#effe8a]'>Book Online</Link>
+                <Link href={"/pricing"} className='text-white hover:text-[#effe8a]'>Plans & Pricing</Link>
                 <div className='relative text-white hover:text-[#effe8a]'>
                     <input
                         placeholder='Search...' 
@@ -60,10 +60,10 @@ function Navbar() {
                         </svg>
                     </div>
                     <div className='flex mt-10 flex-col items-center justify-center gap-5'>
-                        <Link href={"/blog"} className='font-semibold text-2xl'>Home</Link>
-                        <Link href={"#"} className='font-semibold text-2xl'>Blog</Link>
-                        <Link href={"#"} className='font-semibold text-2xl'>Book Online</Link>
-                        <Link href={"#"} className='font-semibold text-2xl'>Plans & Pricing</Link>
+                        <Link href={"/"} className='font-semibold text-2xl'>Home</Link>
+                        <Link href={"/blog"} className='font-semibold text-2xl'>Blog</Link>
+                        <Link href={"/bookings"} className='font-semibold text-2xl'>Book Online</Link>
+                        <Link href={"/pricing"} className='font-semibold text-2xl'>Plans & Pricing</Link>
                     </div>
                 </div>
             </div>
