@@ -23,7 +23,7 @@ function Navbar() {
     }, [menu])
 
     return (
-        <nav className=' relative z-20 flex items-center justify-between md:border-b border-white mx-5 md:mx-20 md:pt-10 md:pb-5 py-5'>
+        <nav className='animate-fadeIn relative z-20 flex items-center justify-between md:border-b border-white mx-5 md:mx-20 md:pt-10 md:pb-5 py-5'>
             <h1 className='text-lg font-medium'>NextGen Business Innovators</h1>
             <div className='md:flex items-center gap-8 hidden '>
                 <Link href={"/"} className='text-white hover:text-[#effe8a]'>Home</Link>

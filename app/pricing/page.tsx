@@ -7,7 +7,7 @@ function page() {
   return (
     <div>
         <Navbar />
-        <div className='h-[70vh] flex flex-col items-center justify-center'>
+        <div className='h-[70vh] flex flex-col items-center justify-center animate-fadeIn'>
             <h1 className='text-2xl font-medium'>No plans available</h1>
             <p className='text-lg mt-5 text-balance w-[70%] md:w-auto'>
                 Once there are plans available for purchase, you&apos;ll see them here.

@@ -48,10 +48,10 @@
     return (
       <div>
         <Navbar />
-          <div className='px-5 mt-5 md:px-20 md:mt-10 md:pb-20 pb-10'>
+          <div className='px-5 mt-5 md:px-20 md:mt-10 md:pb-20 pb-10 animate-fadeIn'>
             <div className='flex items-center justify-between md:px-52'>
               <div className='self-end'>All Posts</div>
-              <button className='border border-primary text-primary bg-none outline-none px-4 py-2'>Log in / Sign up</button>
+              <button className='border border-primary text-primary bg-none outline-none px-4 py-2 transition-all duration-300 ease-in-out hover:bg-transparent hover:bg-primary hover:text-black'>Log in / Sign up</button>
             </div>
             <div className='mt-10 md:px-52 flex flex-col gap-7'>
               {

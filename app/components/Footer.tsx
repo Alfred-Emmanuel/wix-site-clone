@@ -24,7 +24,7 @@ function Footer() {
                     <p className='text-lg text-gray-700 md:text-[1rem]'>Enter Your Email Address *</p>
                     <form className='flex flex-col md:flex-row gap-4 md:gap-0 w-full md:justify-between md:items-end mt-2'>
                         <input type='text' className='border-b border-black outline-none px-2 py-3 w-[90%] md:w-[55%]' />
-                        <button className='px-4 w-[90%] py-4 md:px-0 md:w-[40%] md:py-3 self-start bg-none border border-black rounded-full'> Subscribe </button>
+                        <button className='px-4 w-[90%] py-4 md:px-0 md:w-[40%] md:py-3 self-start bg-none border border-black rounded-full transition-all duration-300 ease-in-out hover:bg-transparent hover:bg-black hover:text-white hover:border-none'> Subscribe </button>
                     </form>
                 </div>
             </div>

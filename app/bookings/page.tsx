@@ -10,7 +10,7 @@ function page() {
   return (
     <div>
         <Navbar />
-        <div className='pt-10 md:pt-20 md:px-20 px-5 pb-10 flex items-center flex-col'>
+        <div className='pt-10 md:pt-20 md:px-20 px-5 pb-10 flex items-center flex-col animate-fadeIn'>
             <h1 className='font-semibold md:text-4xl text-3xl capitalize text-center'> Our Services </h1>
             <div className='w-[90%] md:w-auto flex flex-col md:flex-row items-center justify-center gap-5 md:px-52 mt-10'>
                 <div className='w-full md:w-1/3 flex flex-col border border-gray-700 pb-7'>

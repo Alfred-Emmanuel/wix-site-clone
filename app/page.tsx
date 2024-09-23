@@ -9,50 +9,62 @@ import NewsImg3 from "./assets/news-img-3.jpg"
 import { VideoComponent } from "./components/VideoComponents";
 
 export default function Home() {
-const newsContent = [
-  {
-    id: 1,
-    author: "techvanb",
-    title: "Creating Tomorrow's Business Solutions Today",
-    description: "In today's fast-paced business landscape, staying ahead of the curve is crucial for success. NextGen",
-    image: NewsImg,
-    views: 1,
-    likes: 1
-  },
-  {
-    id: 2,
-    author: "techvanb",
-    title: "Unless the power of tech for business success",
-    description: "In today's rapidly evolving business landscape, staying ahead of the competition requires a harmonious blend",
-    image: NewsImg2,
-    views: 1,
-    likes: 1
-  },
-  {
-    id: 1,
-    author: "techvanb",
-    title: "Revolutionize your business with cutting edge tech solutions",
-    description: "In today's fast-paced business landscape, staying ahead of the curve is essential to success. Embracing",
-    image: NewsImg3,
-    views: 1,
-    likes: 1
-  },
-];
+  const newsContent = [
+    {
+      id: 1,
+      author: "techvanb",
+      title: "Creating Tomorrow's Business Solutions Today",
+      description: "In today's fast-paced business landscape, staying ahead of the curve is crucial for success. NextGen",
+      image: NewsImg,
+      views: 1,
+      likes: 1
+    },
+    {
+      id: 2,
+      author: "techvanb",
+      title: "Unless the power of tech for business success",
+      description: "In today's rapidly evolving business landscape, staying ahead of the competition requires a harmonious blend",
+      image: NewsImg2,
+      views: 1,
+      likes: 1
+    },
+    {
+      id: 1,
+      author: "techvanb",
+      title: "Revolutionize your business with cutting edge tech solutions",
+      description: "In today's fast-paced business landscape, staying ahead of the curve is essential to success. Embracing",
+      image: NewsImg3,
+      views: 1,
+      likes: 1
+    },
+  ];
 
   return (
     <main>
       <Navbar />
-      <div className="h-52 md:h-auto px-5 mt-8 md:mt-24 flex items-center justify-center flex-col">  
-        <h1 className="capitalize text-5xl md:text-7xl md:w-[50%] font-semibold text-center">
-          Revolutonize your Business
+      <div className="h-52 md:h-auto px-5 mt-8 md:mt-24 flex items-center justify-center flex-col animate-fadeIn">
+        <h1 className="capitalize text-5xl md:text-7xl md:w-[50%] font-semibold text-center animate-fadeIn">
+          Revolutionize your Business
         </h1>
-        <h4 className="text-center text-xl md:text-2xl mt-3 font-semibold w-[80%]">Technology consulting services</h4>
+        <h4 className="text-center text-xl md:text-2xl mt-3 font-semibold w-[80%] animate-fadeIn">
+          Technology consulting services
+        </h4>
       </div>
       <div className="w-full overflow-hidden flex flex-col md:flex-row items-center justify-end relative mt-10 px-5 md:px-0 md:pr-20 h-screen">
-          <Image src={HeroBg1} placeholder="blur" alt="background image" className="self-center md:absolute inset-0 left-40 md:z-10 w-full md:w-[40%] h-[50%] md:h-[80%]" />
-          <Image src={HeroBg2} placeholder="blur" alt="background image" className=" md:align-end w-full md:w-[55%] h-full " />
+        <Image
+          src={HeroBg1}
+          placeholder="blur"
+          alt="background image"
+          className="self-center md:absolute inset-0 left-40 md:z-10 w-full md:w-[40%] h-[50%] md:h-[80%] animate-fadeIn"
+        />
+        <Image
+          src={HeroBg2}
+          placeholder="blur"
+          alt="background image"
+          className="md:align-end w-full md:w-[55%] h-full animate-fadeIn"
+        />
       </div>
-      <div className="bg-[#effe8a] w-full mt-28 pt-8 md:pt-16 pb-10 px-5 md:px-20">
+      <div className="animate-fadeIn bg-[#effe8a] w-full mt-28 pt-8 md:pt-16 pb-10 px-5 md:px-20">
         <h1 className="font-semibold md:text-6xl text-3xl capitalize text-black">Latest News</h1>
         <div className="md:mt-10 mt-5 flex flex-col md:flex-row items-center justify-center gap-5">
           {
@@ -95,7 +107,7 @@ const newsContent = [
                 <p className="md:hidden text-[1.05rem] mb-2">1hr</p>
                 <p className="text-[1.05rem]">$180</p>
               </div>
-              <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2">Book Now</h5>
+              <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-transparent hover:bg-black hover:text-white cursor-pointer">Book Now</h5>
             </div>
           </div>
           <div className="w-full md:w-1/3 px-8 md:border border-black py-7">
@@ -106,7 +118,7 @@ const newsContent = [
                 <p className="md:hidden text-[1.05rem] mb-2">1hr</p>
                 <p className="text-[1.05rem]">$180</p>
               </div>
-              <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2">Book Now</h5>
+              <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-transparent hover:bg-black hover:text-white cursor-pointer">Book Now</h5>
             </div>
           </div>
           <div className="w-full md:w-1/3 px-8 md:border border-black py-7">
@@ -117,7 +129,7 @@ const newsContent = [
                 <p className="md:hidden text-[1.05rem] mb-2">1hr</p>
                 <p className="text-[1.05rem]">$180</p>
               </div>
-              <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2">Book Now</h5>
+              <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-transparent hover:bg-black hover:text-white cursor-pointer">Book Now</h5>
             </div>
           </div>
         </div>
@@ -136,7 +148,7 @@ const newsContent = [
               your company&apos;s strengths, weaknesses, and opportunities. With our help, you can keep
                your business competitive, successful, and growth-oriented.
             </p>
-            <button className="bg-[#effe8a] text-black self-start px-5 py-3 rounded-full border border-transparent transition-all duration-300 ease-in-out hover:bg-transparent hover:border-[#effe8a] hover:text-[#effe8a]">
+            <button className="bg-[#effe8a] text-black self-start px-5 py-3 rounded-full border border-transparent transition-all duration-300 ease-in-out hover:bg-transparent hover:border-primary hover:text-primary">
               Learn More
             </button>
           </div>
