@@ -11,9 +11,11 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        primary: "#effe8a",
       },
     },
   },
   plugins: [],
 };
+
 export default config;
