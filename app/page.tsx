@@ -107,7 +107,7 @@ export default function Home() {
                 <p className="md:hidden text-[1.05rem] mb-2">1hr</p>
                 <p className="text-[1.05rem]">$180</p>
               </div>
-              <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-transparent hover:bg-black hover:text-white cursor-pointer">Book Now</h5>
+              <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-black hover:text-white cursor-pointer">Book Now</h5>
             </div>
           </div>
           <div className="w-full md:w-1/3 px-8 md:border border-black py-7">
@@ -118,7 +118,7 @@ export default function Home() {
                 <p className="md:hidden text-[1.05rem] mb-2">1hr</p>
                 <p className="text-[1.05rem]">$180</p>
               </div>
-              <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-transparent hover:bg-black hover:text-white cursor-pointer">Book Now</h5>
+              <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-black hover:text-white cursor-pointer">Book Now</h5>
             </div>
           </div>
           <div className="w-full md:w-1/3 px-8 md:border border-black py-7">
@@ -129,7 +129,7 @@ export default function Home() {
                 <p className="md:hidden text-[1.05rem] mb-2">1hr</p>
                 <p className="text-[1.05rem]">$180</p>
               </div>
-              <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-transparent hover:bg-black hover:text-white cursor-pointer">Book Now</h5>
+              <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-black hover:text-white cursor-pointer">Book Now</h5>
             </div>
           </div>
         </div>

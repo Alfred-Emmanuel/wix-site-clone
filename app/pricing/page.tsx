@@ -12,7 +12,7 @@ function page() {
             <p className='text-lg mt-5 text-balance w-[70%] md:w-auto'>
                 Once there are plans available for purchase, you&apos;ll see them here.
             </p>
-            <Link href={'/'} className='px-3 py-2 text-black bg-primary mt-8'>Back to Homepage</Link>
+            <Link href={'/'} className='px-3 py-2 text-black bg-primary mt-8 transition-all duration-300 ease-in-out hover:bg-transparent hover:border hover:border-primary hover:text-primary'>Back to Homepage</Link>
         </div>
         <Footer />
     </div>
