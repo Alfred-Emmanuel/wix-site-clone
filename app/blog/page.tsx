@@ -5,6 +5,7 @@
   import NewsImg from "../assets/news-img-1.jpg"
   import NewsImg2 from "../assets/news-image-2.jpg"
   import NewsImg3 from "../assets/news-img-3.jpg"
+  import InViewWrapper from '../utils/InViewWrapper'
 
   function page() {
     const blogContent = [
@@ -78,27 +79,32 @@
                         {content.title}
                       </h1>
                       <h5 className='mb-12 text-lg w-[90%] cursor-pointer hover:text-primary'>{content.description}</h5>
-                      <div className='border-t border-gray-500 py-5 flex items-center justify-between'>
-                        <div className='flex gap-3'>
-                          <p className='cursor-pointer'>
-                            {content.views} views
-                          </p>
-                          <p className='cursor-pointer'>
-                            {content.comments} comments
-                          </p>
-                        </div>
-                        <div className='flex items-center gap-5'>
-                          <div className="flex item-center justify-center gap-1 text-gray-600 cursor-pointer">
-                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 text-red-500">
-                              <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
-                            </svg>
-                            <p className="text-sm text-white"> {content.likes} </p>
+                      <InViewWrapper
+                        className={`border-animate top py-5`}
+                        style={{ '--border-color': '#6B7280' }}
+                      >
+                        <div className='flex items-center justify-between'>
+                          <div className='flex gap-3'>
+                            <p className='cursor-pointer'>
+                              {content.views} views
+                            </p>
+                            <p className='cursor-pointer'>
+                              {content.comments} comments
+                            </p>
                           </div>
-                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4 cursor-pointer">
-                            <path fillRule="evenodd" d="M15.75 4.5a3 3 0 1 1 .825 2.066l-8.421 4.679a3.002 3.002 0 0 1 0 1.51l8.421 4.679a3 3 0 1 1-.729 1.31l-8.421-4.678a3 3 0 1 1 0-4.132l8.421-4.679a3 3 0 0 1-.096-.755Z" clipRule="evenodd" />
-                          </svg>
+                          <div className='flex items-center gap-5'>
+                            <div className="flex item-center justify-center gap-1 text-gray-600 cursor-pointer">
+                              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 text-red-500">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                              </svg>
+                              <p className="text-sm text-white"> {content.likes} </p>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" className="size-4 cursor-pointer">
+                              <path fillRule="evenodd" d="M15.75 4.5a3 3 0 1 1 .825 2.066l-8.421 4.679a3.002 3.002 0 0 1 0 1.51l8.421 4.679a3 3 0 1 1-.729 1.31l-8.421-4.678a3 3 0 1 1 0-4.132l8.421-4.679a3 3 0 0 1-.096-.755Z" clipRule="evenodd" />
+                            </svg>
+                          </div>
                         </div>
-                      </div>
+                      </InViewWrapper>
                     </div>
                   </div>
                 ))

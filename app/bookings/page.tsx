@@ -5,6 +5,7 @@ import Image from 'next/image'
 import bookings1 from "../assets/bookings_1.png"
 import bookings2 from "../assets/bookings_2.png"
 import bookings3 from "../assets/bookings_3.png"
+import InViewWrapper from '../utils/InViewWrapper'
 
 function page() {
   return (
@@ -16,9 +17,14 @@ function page() {
                 <div className='w-full md:w-1/3 flex flex-col border border-gray-700 pb-7'>
                     <Image src={bookings1} alt='bookings' className='md:h-44 w-full hover:opacity-80 transition-opacity duration-300 cursor-pointer' />
                     <div className='px-5'>    
-                        <div className='border-b border-gray-700 py-5'>
-                            <h1 className='text-xl font-semibold hover:opacity-80 transition-opacity duration-300 cursor-pointer'>Business Consulting Services</h1>
-                        </div>
+                        <InViewWrapper
+                            className={`border-animate bottom py-5`}
+                            style={{ '--border-color': '#374151' }}
+                        >
+                            <div className=''>
+                                <h1 className='text-xl font-semibold hover:opacity-80 transition-opacity duration-300 cursor-pointer'>Business Consulting Services</h1>
+                            </div>
+                        </InViewWrapper>
                         <div className='mt-7'>
                             <p>1 hr</p>
                             <p className='mt-3'>$180</p>
@@ -29,9 +35,14 @@ function page() {
                 <div className='w-full md:w-1/3 flex flex-col border border-gray-700 pb-7'>
                     <Image src={bookings2} alt='bookings' className='md:h-44 w-full hover:opacity-80 transition-opacity duration-300 cursor-pointer' />
                     <div className='px-5'>    
-                        <div className='border-b border-gray-700 py-8'>
-                            <h1 className='text-xl font-semibold hover:opacity-80 transition-opacity duration-300 cursor-pointer'>Tech Product Consulting</h1>
-                        </div>
+                        <InViewWrapper
+                            className={`border-animate bottom py-8`}
+                            style={{ '--border-color': '#374151' }}
+                        >
+                            <div className=''>
+                                <h1 className='text-xl font-semibold hover:opacity-80 transition-opacity duration-300 cursor-pointer'>Tech Product Consulting</h1>
+                            </div>
+                        </InViewWrapper>
                         <div className='mt-7'>
                             <p>45 mins</p>
                             <p className='mt-3'>$150</p>
@@ -42,9 +53,14 @@ function page() {
                 <div className='w-full md:w-1/3 flex flex-col border border-gray-700 pb-7'>
                     <Image src={bookings3} alt='bookings' className='md:h-44 w-full hover:opacity-80 transition-opacity duration-300 cursor-pointer' />
                     <div className='px-5'>    
-                        <div className='border-b border-gray-700 py-5'>
-                            <h1 className='text-xl font-semibold hover:opacity-80 transition-opacity duration-300 cursor-pointer'>Business Strategy Consulting</h1>
-                        </div>
+                        <InViewWrapper
+                            className={`border-animate bottom py-5`}
+                            style={{ '--border-color': '#374151' }}
+                        >
+                            <div className=''>
+                                <h1 className='text-xl font-semibold hover:opacity-80 transition-opacity duration-300 cursor-pointer'>Business Strategy Consulting</h1>
+                            </div>
+                        </InViewWrapper>
                         <div className='mt-7'>
                             <p>1 hr</p>
                             <p className='mt-3'>$200</p>

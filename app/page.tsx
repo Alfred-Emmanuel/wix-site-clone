@@ -7,6 +7,7 @@ import NewsImg from "./assets/news-img-1.jpg"
 import NewsImg2 from "./assets/news-image-2.jpg"
 import NewsImg3 from "./assets/news-img-3.jpg"
 import { VideoComponent } from "./components/VideoComponents";
+import InViewWrapper from "./utils/InViewWrapper";
 
 export default function Home() {
   const newsContent = [
@@ -75,21 +76,26 @@ export default function Home() {
                   <h5 className="text-gray-600 text-sm">{news.author}</h5>
                   <h1 className="capitalize mt-5 text-xl text-gray-600">{news.title}</h1>
                   <p className="mt-4 text-gray-700 mb-4"> {news.description} </p>
-                  <div className="flex items-center justify-between pt-4 pb-2 border-t border-slate-400">
-                    <div className="flex item-center justify-center gap-1 text-black">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                      </svg>
-                      <p className="text-sm ">{news.views}</p>
+                  <InViewWrapper
+                    className={`border-animate top pt-4 pb-2`}
+                    style={{ '--border-color': '#94A3B8' }}
+                  >
+                    <div className="flex items-center justify-between">
+                      <div className="flex item-center justify-center gap-1 text-black">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M2.036 12.322a1.012 1.012 0 0 1 0-.639C3.423 7.51 7.36 4.5 12 4.5c4.638 0 8.573 3.007 9.963 7.178.07.207.07.431 0 .639C20.577 16.49 16.64 19.5 12 19.5c-4.638 0-8.573-3.007-9.963-7.178Z" />
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                        </svg>
+                        <p className="text-sm ">{news.views}</p>
+                      </div>
+                      <div className="flex item-center justify-center gap-1 text-gray-600">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 text-red-500">
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
+                        </svg>
+                        <p className="text-sm"> {news.likes} </p>
+                      </div>
                     </div>
-                    <div className="flex item-center justify-center gap-1 text-gray-600">
-                      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="size-5 text-red-500">
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z" />
-                      </svg>
-                      <p className="text-sm"> {news.likes} </p>
-                    </div>
-                  </div>
+                  </InViewWrapper>
                 </div>
               </div>
             ))
@@ -102,35 +108,50 @@ export default function Home() {
           <div className="w-full md:w-1/3 px-8 md:border border-black py-7">
             <h1 className="text-2xl md:text-xl text-gray-700">Business Solutions Consulting</h1>
             <p className="mt-5 md:hidden text-[1.05rem]">Empower your business with efficient and productive solutions.</p>
-            <div className="mt-7 border-t border-black py-4 flex flex-col gap-4">
-              <div>
-                <p className="md:hidden text-[1.05rem] mb-2">1hr</p>
-                <p className="text-[1.05rem]">$180</p>
+            <InViewWrapper 
+              className="mt-7 py-4 border-animate top"
+              style={{ '--border-color': 'black' }}
+            >
+              <div className="flex flex-col gap-4">
+                <div>
+                  <p className="md:hidden text-[1.05rem] mb-2">1hr</p>
+                  <p className="text-[1.05rem]">$180</p>
+                </div>
+                <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-black hover:text-white cursor-pointer">Book Now</h5>
               </div>
-              <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-black hover:text-white cursor-pointer">Book Now</h5>
-            </div>
+            </InViewWrapper>
           </div>
           <div className="w-full md:w-1/3 px-8 md:border border-black py-7">
             <h1 className="text-2xl md:text-xl text-gray-700">Tech Product Consulting</h1>
             <p className="mt-5 md:hidden text-[1.05rem]">Empower your tech products with cutting-edge insights.</p>
-            <div className="mt-7 border-t border-black py-4 flex flex-col gap-4">
-              <div>
-                <p className="md:hidden text-[1.05rem] mb-2">1hr</p>
-                <p className="text-[1.05rem]">$180</p>
+            <InViewWrapper 
+              className="mt-7 py-4 border-animate top"
+              style={{ '--border-color': 'black' }}
+            >
+              <div className="flex flex-col gap-4">
+                <div>
+                  <p className="md:hidden text-[1.05rem] mb-2">1hr</p>
+                  <p className="text-[1.05rem]">$180</p>
+                </div>
+                <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-black hover:text-white cursor-pointer">Book Now</h5>
               </div>
-              <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-black hover:text-white cursor-pointer">Book Now</h5>
-            </div>
+            </InViewWrapper>
           </div>
           <div className="w-full md:w-1/3 px-8 md:border border-black py-7">
             <h1 className="text-2xl md:text-xl text-gray-700">Business Strategy Consulting</h1>
             <p className="mt-5 md:hidden text-[1.05rem]">Transform your business landscape with strategic consulting.</p>
-            <div className="mt-7 border-t border-black py-4 flex flex-col gap-4">
-              <div>
-                <p className="md:hidden text-[1.05rem] mb-2">1hr</p>
-                <p className="text-[1.05rem]">$180</p>
+            <InViewWrapper 
+              className="mt-7 py-4 border-animate top"
+              style={{ '--border-color': 'black' }}
+            >
+              <div className="flex flex-col gap-4">
+                <div>
+                  <p className="md:hidden text-[1.05rem] mb-2">1hr</p>
+                  <p className="text-[1.05rem]">$180</p>
+                </div>
+                <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-black hover:text-white cursor-pointer">Book Now</h5>
               </div>
-              <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-black hover:text-white cursor-pointer">Book Now</h5>
-            </div>
+            </InViewWrapper>
           </div>
         </div>
       </div>

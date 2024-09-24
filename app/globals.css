@@ -6,3 +6,75 @@ body {
   background-color: black;
   color: white;
 }
+
+@keyframes borderGrow {
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: 100%;
+  }
+}
+
+.border-animate {
+  position: relative;
+}
+
+/* General border animation for all borders */
+.border-animate::after {
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 1px;
+  /* Default for top and bottom */
+  background-color: var(--border-color, white);
+  /* Default to white if not provided */
+  transition: width 1s ease-out;
+}
+
+/* Animation for the bottom border */
+.border-animate.bottom::after {
+  bottom: 0;
+  left: 0;
+}
+
+/* Animation for the top border */
+.border-animate.top::after {
+  top: 0;
+  left: 0;
+}
+
+/* Animation for the left border */
+.border-animate.left::after {
+  top: 0;
+  left: 0;
+  width: 1px;
+  /* Adjust height for left border */
+  height: 100%;
+  /* Full height for left border */
+  transition: height 1s ease-out;
+}
+
+/* Animation for the right border */
+.border-animate.right::after {
+  top: 0;
+  right: 0;
+  width: 1px;
+  /* Adjust height for right border */
+  height: 100%;
+  /* Full height for right border */
+  transition: height 1s ease-out;
+}
+
+/* Width for top and bottom borders when in view */
+.border-animate.in-view.bottom::after,
+.border-animate.in-view.top::after {
+  width: 100%;
+}
+
+/* Height for left and right borders when in view */
+.border-animate.in-view.left::after,
+.border-animate.in-view.right::after {
+  height: 100%;
+}
