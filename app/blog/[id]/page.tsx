@@ -3,7 +3,7 @@ import Footer from '@/app/components/Footer'
 import WrapperContainer from '@/app/components/WrapperContainer'
 import { db } from '@/app/lib/firebase'
 import { doc, getDoc } from 'firebase/firestore'
-
+import Testing from '@/app/components/Testing'
 interface Blog {
     title: string
     content: string
@@ -26,7 +26,7 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
     const blogRef = doc(db, 'blogs', id)
     const blogDoc = await getDoc(blogRef)
 
-    if (!blogDoc.exists()) return <div>Blog not Found</div>
+    if (!blogDoc.exists()) return <Testing />
 
     const blog = blogDoc.data() as Blog
 
