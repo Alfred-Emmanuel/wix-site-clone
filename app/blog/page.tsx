@@ -1,51 +1,31 @@
+import { collection, getDocs } from 'firebase/firestore'
 import Image from 'next/image'
-import NewsImg2 from '../assets/news-image-2.jpg'
-import NewsImg from '../assets/news-img-1.jpg'
-import NewsImg3 from '../assets/news-img-3.jpg'
 import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import WrapperContainer from '../components/WrapperContainer'
+import { BLOGS_COLLECTION_NAME, db } from '../lib/firebase'
+import { blogService } from '../lib/firebase/blogService'
+import { formatBlogDate } from '../utils/formatDate'
 import InViewWrapper from '../utils/InViewWrapper'
+import { Blog } from './interface'
 
-function page() {
-    const blogContent = [
-        {
-            id: 1,
-            author: 'techvanb',
-            title: "Creating Tomorrow's Business Solutions Today",
-            description: "In today's fast-paced business landscape, staying ahead of the curve is crucial for success. NextGen",
-            image: NewsImg,
-            date: 'May 25',
-            readTime: '2 min',
-            views: 1,
-            likes: 1,
-            comments: 0,
-        },
-        {
-            id: 2,
-            author: 'techvanb',
-            title: 'Unless the power of tech for business success',
-            description: "In today's rapidly evolving business landscape, staying ahead of the competition requires a harmonious blend",
-            image: NewsImg2,
-            date: 'May 25',
-            readTime: '2 min',
-            views: 1,
-            likes: 1,
-            comments: 0,
-        },
-        {
-            id: 1,
-            author: 'techvanb',
-            title: 'Revolutionize your business with cutting edge tech solutions',
-            description: "In today's fast-paced business landscape, staying ahead of the curve is essential to success. Embracing",
-            image: NewsImg3,
-            date: 'May 25',
-            readTime: '2 min',
-            views: 1,
-            likes: 1,
-            comments: 0,
-        },
-    ]
+async function Page() {
+    const getBlogs = async () => {
+        const blogsCollection = collection(db, BLOGS_COLLECTION_NAME)
+        const querySnapshot = await getDocs(blogsCollection)
+        const blogData: Blog[] = []
+
+        querySnapshot.forEach((doc) => {
+            blogData.push({ ...doc.data(), id: doc.id } as Blog)
+        })
+
+        return blogData
+    }
+
+    const blogs = await getBlogs()
+
+    const { handleLikeBlog } = blogService()
+
     return (
         <div>
             <Navbar />
@@ -58,10 +38,10 @@ function page() {
                         </button>
                     </div>
                     <div className="mt-10 flex flex-col gap-7">
-                        {blogContent.map((content) => (
+                        {blogs.map((content) => (
                             <div key={content.id} className="flex border border-gray-800 flex-col md:flex-row gap-3">
                                 <div className="w-full md:w-[45%] justify-self-start">
-                                    <Image src={content.image} alt="image" placeholder="blur" className="md:h-96 md:w-full" />
+                                    <Image src={content.image} alt="image" height={100} width={100} className="md:h-96 md:w-full object-cover" />
                                 </div>
                                 <div className="md:w-1/2 py-5 px-8">
                                     <div className="flex items-center gap-2 mb-5">
@@ -78,24 +58,27 @@ function page() {
                                             />
                                         </svg>
                                         <div className="flex flex-col items-center p-0 gap-0 m-0">
-                                            <p className="self-start text-xs font-medium cursor-pointer">{content.author}</p>
+                                            <p className="self-start text-xs font-medium cursor-pointer">techvanb</p>
                                             <span className="flex items-center gap-2 text-xs font-medium">
-                                                <p>{content.date}</p>
+                                                <p>{formatBlogDate(content.timestamp).formattedDate}</p>
                                                 <p>.</p>
-                                                <p>{content.readTime}</p>
+                                                <p>{formatBlogDate(content.timestamp).timeAgoString}</p>
                                             </span>
                                         </div>
                                     </div>
                                     <h1 className="mb-5 text-[28px] font-semibold cursor-pointer hover:text-primary">{content.title}</h1>
-                                    <h5 className="mb-12 text-base w-[90%] cursor-pointer hover:text-primary">{content.description}</h5>
+                                    <h5 className="mb-12 text-base w-[90%] cursor-pointer hover:text-primary">
+                                        {content.introductory.length > 150 ? `${content.introductory.substring(0, 150)}...` : content.introductory}
+                                    </h5>
                                     <InViewWrapper className={`border-animate border-top py-5`} style={{ '--border-color': '#6B7280' }}>
                                         <div className="flex items-center justify-between">
                                             <div className="flex gap-3 text-xs">
                                                 <p className="cursor-pointer">{content.views} views</p>
-                                                <p className="cursor-pointer">{content.comments} comments</p>
+                                                <p className="cursor-pointer">{content.comments.length ?? 0} comments</p>
                                             </div>
                                             <div className="flex items-center gap-5">
                                                 <div className="flex item-center justify-center gap-1 text-gray-600 cursor-pointer">
+                                                    <p className="text-sm text-white"> {content.likes} </p>
                                                     <svg
                                                         xmlns="http://www.w3.org/2000/svg"
                                                         fill="none"
@@ -103,6 +86,7 @@ function page() {
                                                         strokeWidth={1.5}
                                                         stroke="currentColor"
                                                         className="size-5 text-red-500"
+                                                        // onClick={() => handleLikeBlog(content.id)}
                                                     >
                                                         <path
                                                             strokeLinecap="round"
@@ -110,9 +94,7 @@ function page() {
                                                             d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
                                                         />
                                                     </svg>
-                                                    <p className="text-sm text-white"> {content.likes} </p>
                                                 </div>
-                                         
                                             </div>
                                         </div>
                                     </InViewWrapper>
@@ -127,4 +109,4 @@ function page() {
     )
 }
 
-export default page
+export default Page
