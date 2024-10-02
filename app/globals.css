@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-color: black;
+  background-color: #000;
   color: white;
 }
 
@@ -16,65 +16,59 @@ body {
     width: 100%;
   }
 }
+/* You can keep this part in your global CSS */
+@layer components {
+  .border-animate {
+    @apply relative;
+  }
 
-.border-animate {
-  position: relative;
-}
+  .border-animate::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 1px;
+    background-color: var(--border-color, white);
+    transition: width 1s ease-out;
+  }
 
-/* General border animation for all borders */
-.border-animate::after {
-  content: '';
-  position: absolute;
-  width: 0;
-  height: 1px;
-  /* Default for top and bottom */
-  background-color: var(--border-color, white);
-  /* Default to white if not provided */
-  transition: width 1s ease-out;
-}
+  /* For the bottom border */
+  .border-bottom::after {
+    bottom: 0;
+    left: 0;
+  }
 
-/* Animation for the bottom border */
-.border-animate.bottom::after {
-  bottom: 0;
-  left: 0;
-}
+  /* For the top border */
+  .border-top::after {
+    top: 0;
+    left: 0;
+  }
 
-/* Animation for the top border */
-.border-animate.top::after {
-  top: 0;
-  left: 0;
-}
+  /* For the left border */
+  .border-left::after {
+    top: 0;
+    left: 0;
+    width: 1px;
+    height: 100%;
+    transition: height 1s ease-out;
+  }
 
-/* Animation for the left border */
-.border-animate.left::after {
-  top: 0;
-  left: 0;
-  width: 1px;
-  /* Adjust height for left border */
-  height: 100%;
-  /* Full height for left border */
-  transition: height 1s ease-out;
-}
+  /* For the right border */
+  .border-right::after {
+    top: 0;
+    right: 0;
+    width: 1px;
+    height: 100%;
+    transition: height 1s ease-out;
+  }
 
-/* Animation for the right border */
-.border-animate.right::after {
-  top: 0;
-  right: 0;
-  width: 1px;
-  /* Adjust height for right border */
-  height: 100%;
-  /* Full height for right border */
-  transition: height 1s ease-out;
-}
+  /* In view states */
+  .in-view.border-bottom::after,
+  .in-view.border-top::after {
+    width: 100%;
+  }
 
-/* Width for top and bottom borders when in view */
-.border-animate.in-view.bottom::after,
-.border-animate.in-view.top::after {
-  width: 100%;
-}
-
-/* Height for left and right borders when in view */
-.border-animate.in-view.left::after,
-.border-animate.in-view.right::after {
-  height: 100%;
+  .in-view.border-left::after,
+  .in-view.border-right::after {
+    height: 100%;
+  }
 }

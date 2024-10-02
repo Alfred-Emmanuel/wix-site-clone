@@ -8,6 +8,10 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["var(--font-wix-made-for-display)"],
+      },
+
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
@@ -15,12 +19,12 @@ const config: Config = {
       },
       keyframes: {
         fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+          "0%": { opacity: "0" },
+          "100%": { opacity: "1" },
         },
       },
       animation: {
-        fadeIn: 'fadeIn 1s ease-in-out',
+        fadeIn: "fadeIn 1s ease-in-out",
       },
     },
   },
