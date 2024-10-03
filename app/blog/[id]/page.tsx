@@ -43,7 +43,7 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
                             Log in / Sign up
                         </button> */}
                     </div>
-                    <div className="border border-gray-800 mt-10 py-16 ">
+                    <div className="border border-gray-800 mt-10 mb-4 py-16 ">
                         <div className="w-[80%] mx-auto">
                             <div className="flex gap-2 items-center p-2 mb-5">
                                 <svg
@@ -91,6 +91,18 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
                                         <LikeButton blog={blog} />
                                     </div>
                                 </div>
+                            </InViewWrapper>
+                        </div>
+                    </div>
+
+                    <Link href={'/blog'} className="hover:text-primary transition-all flex justify-end w-full duration-200 ease-in-out text-sm">
+                        See all
+                    </Link>
+
+                    <div className="border border-gray-800 mt-10 mb-4 py-10 ">
+                        <div className="w-[80%] mx-auto">
+                            <InViewWrapper className={`border-animate border-bottom pb-4`} style={{ '--border-color': '#1f2937' }}>
+                                <h1 className='font-bold tracking-wide text-base'>Comments</h1>
                             </InViewWrapper>
                         </div>
                     </div>

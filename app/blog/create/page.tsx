@@ -62,7 +62,7 @@ function Testing() {
                 introductory: blogForm.introductory,
                 content: blogForm.content,
                 likes: 0,
-                views: '0',
+                views: 0,
                 comments: [],
                 timestamp: new Date().toISOString(),
             }

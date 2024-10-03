@@ -8,9 +8,9 @@ import Footer from '../components/Footer'
 import Navbar from '../components/Navbar'
 import WrapperContainer from '../components/WrapperContainer'
 import { BLOGS_COLLECTION_NAME, db } from '../lib/firebase'
-import { blogService } from '../lib/firebase/blogService'
 import { formatBlogDate } from '../utils/formatDate'
 import InViewWrapper from '../utils/InViewWrapper'
+import BlogCardContainer from './BlogCardContainer'
 import { Blog } from './interface'
 
 const blogContent: Blog[] = [
@@ -69,8 +69,6 @@ async function Page() {
 
     const blogs = items && items.length > 0 ? items : blogContent
 
-    const { handleLikeBlog } = blogService()
-
     return (
         <div>
             <Navbar />
@@ -88,7 +86,7 @@ async function Page() {
 
                     <div className="mt-10 flex flex-col gap-7">
                         {blogs.map((content) => (
-                            <Link href={`/blog/${content.id}`} key={content.id} className="flex border border-gray-800 flex-col md:flex-row gap-3">
+                            <BlogCardContainer key={content.id} blog={content}>
                                 <div className="w-full md:w-[45%] h-1/2 md:h-full ">
                                     <Image src={content.image} alt="image" height={100} width={100} className="w-full h-full object-cover max-h-96" />
                                 </div>
@@ -116,8 +114,10 @@ async function Page() {
                                                 </span>
                                             </div>
                                         </div>
-                                        <h1 className="mb-5 text-[28px] font-semibold cursor-pointer hover:text-primary">{content.title}</h1>
-                                        <h5 className="mb-12 text-base w-[90%] cursor-pointer hover:text-primary">
+                                        <h1 className="mb-5 text-[28px] font-semibold transition-all duration-150 ease-in-out cursor-pointer group-hover:text-primary">
+                                            {content.title}
+                                        </h1>
+                                        <h5 className="mb-12 text-base w-[90%] transition-all duration-150 ease-in-out cursor-pointer group-hover:text-primary">
                                             {content.introductory.length > 150
                                                 ? `${content.introductory.substring(0, 150)}...`
                                                 : content.introductory}
@@ -140,7 +140,6 @@ async function Page() {
                                                         strokeWidth={1.5}
                                                         stroke="currentColor"
                                                         className="size-5 text-red-500"
-                                                        // onClick={() => handleLikeBlog(content.id)}
                                                     >
                                                         <path
                                                             strokeLinecap="round"
@@ -153,7 +152,7 @@ async function Page() {
                                         </div>
                                     </InViewWrapper>
                                 </div>
-                            </Link>
+                            </BlogCardContainer>
                         ))}
                     </div>
                 </div>
