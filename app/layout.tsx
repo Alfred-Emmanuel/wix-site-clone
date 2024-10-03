@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 import { Wix_Madefor_Display } from 'next/font/google'
+import { handleUserId } from './utils/generateId'
 
 //👇 Configure our font object
 const wixMadeForDisplay = Wix_Madefor_Display({
@@ -22,7 +23,6 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" className={`${wixMadeForDisplay.className}`}>
-          
             <body>{children}</body>
         </html>
     )

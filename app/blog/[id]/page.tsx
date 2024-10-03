@@ -8,7 +8,9 @@ import InViewWrapper from '@/app/utils/InViewWrapper'
 import { doc, getDoc } from 'firebase/firestore'
 import { NotFoundBoundary } from 'next/dist/client/components/not-found-boundary'
 import Image from 'next/image'
+import Link from 'next/link'
 import { Blog } from '../interface'
+import LikeButton from './likes'
 
 export default async function BlogPage({ params }: { params: { id: string } }) {
     const id = params.id
@@ -22,7 +24,10 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
 
     if (!blogDoc.exists()) return <NotFoundBoundary>Invalid Blog</NotFoundBoundary>
 
-    const blog = blogDoc.data() as Blog
+    const blog = {
+        ...blogDoc.data(),
+        id: blogDoc.id,
+    } as Blog
 
     return (
         <div>
@@ -30,7 +35,10 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
             <WrapperContainer>
                 <div className="mt-8 md:mt-24 mb-16  md:w-[63%] mx-auto">
                     <div className="flex justify-between items-center">
-                        <h1>All posts</h1>
+                        {/* <h1>All posts</h1> */}
+                        <Link href={'/blog'} className="hover:text-primary transition-all duration-200 ease-in-out text-sm">
+                            All Posts
+                        </Link>
                         {/* <button className="border border-primary text-primary bg-none outline-none px-4 py-2 transition-all duration-300 ease-in-out hover:bg-primary hover:text-black">
                             Log in / Sign up
                         </button> */}
@@ -61,7 +69,7 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
                             </div>
                             <h1 className="md:mt-8 text-2xl font-bold">{blog.title}</h1>
                             <p className="mt-5  leading-7 text-lg">{blog.introductory}</p>
-                            <Image src={blog.image} alt="news" className="h-[300px] md:h-[500px] w-full object-cover my-5" />
+                            <Image src={blog.image} width={100} height={100} alt="news" className="h-[300px] md:h-[500px] w-full object-cover my-5" />
                             <p className="mt-5 md:mt-10 leading-7 text-lg">{blog.content}</p>
 
                             <InViewWrapper className={`border-animate border-top  mt-7`} style={{ '--border-color': '#6B7280' }}>
@@ -80,24 +88,7 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
                                         <p className="cursor-pointer">{blog.comments.length} comments</p>
                                     </div>
                                     <div className="flex items-center gap-5">
-                                        <div className="flex item-center justify-center gap-1 text-gray-600 cursor-pointer">
-                                            <span className="text-white">{blog.likes}</span>
-                                            <svg
-                                                xmlns="http://www.w3.org/2000/svg"
-                                                fill="none"
-                                                viewBox="0 0 24 24"
-                                                strokeWidth={1.5}
-                                                stroke="currentColor"
-                                                className="size-5 text-red-500"
-                                            >
-                                                <path
-                                                    strokeLinecap="round"
-                                                    strokeLinejoin="round"
-                                                    d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12Z"
-                                                />
-                                            </svg>
-                                            <p className="text-sm text-white"> </p>
-                                        </div>
+                                        <LikeButton blog={blog} />
                                     </div>
                                 </div>
                             </InViewWrapper>

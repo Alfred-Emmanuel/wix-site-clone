@@ -1,11 +1,13 @@
+import { StaticImageData } from "next/image"
+
 export interface Blog {
     id: string
     title: string
-    image: string
+    image: string | StaticImageData
     introductory: string
     content: string
     likes: number
-    views: string
+    views: number
     comments: Comment[]
     timestamp: string
 }

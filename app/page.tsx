@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import NewsImg2 from './assets/news-image-2.jpg'
 import NewsImg from './assets/news-img-1.jpg'
@@ -9,6 +10,7 @@ import Navbar from './components/Navbar'
 import { VideoComponent } from './components/VideoComponents'
 import WrapperContainer from './components/WrapperContainer'
 import InViewWrapper from './utils/InViewWrapper'
+import { handleUserId } from './utils/generateId'
 
 export default function Home() {
     const newsContent = [
@@ -40,6 +42,8 @@ export default function Home() {
             likes: 1,
         },
     ]
+
+    handleUserId()
 
     return (
         <main>
