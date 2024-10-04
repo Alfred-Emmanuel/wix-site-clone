@@ -28,6 +28,16 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
         ...blogDoc.data(),
         id: blogDoc.id,
     } as Blog
+    //  const handleAddComment = async (blogId: string, comment: Comment) => {
+    //      try {
+    //          const blogRef = doc(db, 'blogs', blogId)
+    //          const blogDoc = await getDoc(blogRef)
+    //          const currentComments = blogDoc.data()?.comments || []
+    //          await updateDoc(blogRef, { comments: [...currentComments, comment] })
+    //      } catch (error) {
+    //          console.error('Error adding comment:', error)
+    //      }
+    //  }
 
     return (
         <div>
