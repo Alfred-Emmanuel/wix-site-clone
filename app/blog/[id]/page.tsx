@@ -11,9 +11,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { Blog } from '../interface'
 import LikeButton from './likes'
+import Comment from './comments'
+import { useAuth } from '@/app/context/AuthContext'
 
 export default async function BlogPage({ params }: { params: { id: string } }) {
     const id = params.id
+    // const { currentUser } = useAuth()
 
     if (!id) {
         return <div>Blog ID not found</div>
@@ -112,7 +115,8 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
                     <div className="border border-gray-800 mt-10 mb-4 py-10 ">
                         <div className="w-[80%] mx-auto">
                             <InViewWrapper className={`border-animate border-bottom pb-4`} style={{ '--border-color': '#1f2937' }}>
-                                <h1 className='font-bold tracking-wide text-base'>Comments</h1>
+                                <h1 className="font-bold tracking-wide text-base">Comments</h1>
+                                <Comment />
                             </InViewWrapper>
                         </div>
                     </div>

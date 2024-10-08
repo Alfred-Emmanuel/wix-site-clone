@@ -12,6 +12,7 @@ import { formatBlogDate } from '../utils/formatDate'
 import InViewWrapper from '../utils/InViewWrapper'
 import BlogCardContainer from './BlogCardContainer'
 import { Blog } from './interface'
+import SignUpButton from '../components/SignUpButton'
 
 const blogContent: Blog[] = [
     {
@@ -64,7 +65,6 @@ async function Page() {
 
         return blogData
     }
-
     const items = await getBlogs()
 
     const blogs = items && items.length > 0 ? items : blogContent
@@ -79,9 +79,7 @@ async function Page() {
                         <Link href={'/blog'} className="hover:text-primary transition-all duration-200 ease-in-out text-sm">
                             All Posts
                         </Link>
-                        <button className="border border-primary text-primary bg-none outline-none px-4 py-2 transition-all duration-300 ease-in-out hover:bg-primary hover:text-black">
-                            Log in / Sign up
-                        </button>
+                        <SignUpButton />
                     </div>
 
                     <div className="mt-10 flex flex-col gap-7">
