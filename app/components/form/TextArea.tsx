@@ -7,9 +7,10 @@ type TextAreaProps = {
     value: string
     onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
     rows?: number
+    className?: string
 } & TextareaHTMLAttributes<HTMLTextAreaElement>
 
-const TextArea: React.FC<TextAreaProps> = ({ label, id, placeholder, value, onChange, rows, ...others }) => {
+const TextArea: React.FC<TextAreaProps> = ({ label, id, placeholder, value, onChange, rows, className, ...others }) => {
     return (
         <div className="flex flex-col mb-4">
             <label htmlFor={id} className="text-lg font-semibold text-gray-200 mb-2">
@@ -21,7 +22,7 @@ const TextArea: React.FC<TextAreaProps> = ({ label, id, placeholder, value, onCh
                 placeholder={placeholder}
                 value={value}
                 onChange={onChange}
-                className="bg-black text-white border transition-all duration-150 ease-in-out border-gray-500 py-3 px-4 focus:outline-none focus:ring-[1px] focus:ring-primary focus:border-transparent"
+                className={`bg-black text-white border transition-all duration-150 ease-in-out border-[rgba(36,36,36)] py-3 px-4 focus:outline-none focus:ring-[1px] placeholder:text-white hover:ring-[1px] focus:ring-white hover:ring-white focus:border-transparent ${className}`}
                 {...others}
             />
         </div>

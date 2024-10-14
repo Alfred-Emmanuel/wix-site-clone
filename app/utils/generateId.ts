@@ -9,6 +9,8 @@ export const generateId = (length = 11): string => {
 }
 
 export const handleUserId = () => {
+    if (typeof window === "undefined") return
+
     const id = localStorage.getItem('nextgen-user-id')
 
     if (id) return

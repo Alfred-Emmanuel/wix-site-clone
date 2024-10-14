@@ -12,7 +12,11 @@ export interface Blog {
     timestamp: string
 }
 
-interface Comment {
+export interface Comment {
+    id: string
+    userId?: string
+    photoURL?:string
+    userName: string
     content: string
-    timestamp: number // Timestamp in milliseconds
+    timestamp: string
 }

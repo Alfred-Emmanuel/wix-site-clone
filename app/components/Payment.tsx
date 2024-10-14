@@ -1,8 +1,8 @@
 import { CashAppPay, CreditCard, GooglePay, PaymentForm } from 'react-square-web-payments-sdk'
 
 function CustomPaymentForm() {
-    const appId = 'APP_ID'
-    const locationId = 'LOCATION_ID'
+    const appId = process.env.NEXT_PUBLIC_SQUARE_APP_ID
+    const locationId = process.env.NEXT_PUBLIC_SQUARE_LOCATION_ID
 
     return (
         <PaymentForm

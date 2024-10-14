@@ -32,6 +32,7 @@ function Testing() {
         title: '',
     })
 
+    /* eslint-disable @typescript-eslint/no-explicit-any  */
     const handleChangeValue = (key: keyof BlogForm, value: any) => {
         setBlogForm({ ...blogForm, [key]: value })
     }

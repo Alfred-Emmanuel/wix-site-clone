@@ -65,10 +65,13 @@ body {
   .in-view.border-bottom::after,
   .in-view.border-top::after {
     width: 100%;
+
+    z-index: -1;
   }
 
   .in-view.border-left::after,
   .in-view.border-right::after {
     height: 100%;
+    z-index: -1;
   }
 }

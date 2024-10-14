@@ -53,7 +53,7 @@ function Page() {
                     <h1 className="font-semibold md:text-4xl text-3xl capitalize text-center"> Our Services </h1>
                     <div className="grid grid-cols-3 items-center justify-center gap-5 mt-10">
                         {BOOKING_DATA.map((data) => (
-                            <div key={data.id} className="w-full flex flex-col border border-gray-700 pb-7">
+                            <div key={data.id} className="w-full col-span-3 md:col-span-1 flex flex-col border border-gray-700 pb-7">
                                 <Image
                                     src={data.img}
                                     alt="bookings"

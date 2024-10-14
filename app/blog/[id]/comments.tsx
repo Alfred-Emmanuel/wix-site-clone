@@ -1,72 +1,83 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
 import TextArea from '@/app/components/form/TextArea'
-import ImageUpload from '@/app/components/form/ImageUpload'
-import { db, storage } from '@/app/lib/firebase'
-import { collection, addDoc, onSnapshot, query } from 'firebase/firestore'
-import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
-import { useAuth } from '@/app/context/AuthContext'
+import Login from '@/app/components/Login'
+import Modal from '@/app/components/Modal'
+import { db } from '@/app/lib/firebase'
+import { formatBlogDate } from '@/app/utils/formatDate'
+import { generateId } from '@/app/utils/generateId'
+import InViewWrapper from '@/app/utils/InViewWrapper'
+import { getAuth } from 'firebase/auth'
+import { doc, getDoc, updateDoc } from 'firebase/firestore'
+import Image from 'next/image'
+import { usePathname, useRouter } from 'next/navigation'
+import React, { useState } from 'react'
+import { Blog, Comment } from '../interface'
 
-interface Comment {
-    id: string
-    content: string
-    imageUrl?: string
-    createdAt: Date
-    userName: string
-}
-
-const Comment: React.FC = () => {
-    const { currentUser } = useAuth()
+export default function CommentCompononent({ blog }: { blog: Blog }) {
+    const { currentUser } = getAuth()
     const [comment, setComment] = useState('')
-    const [image, setImage] = useState<File | null>(null)
-    const [comments, setComments] = useState<Comment[]>([])
+    const [comments, setComments] = useState<Comment[]>(blog.comments ?? [])
     const [isModalOpen, setIsModalOpen] = useState(false)
+    const [publishing, setPublishing] = useState(false)
 
-    useEffect(() => {
-        const q = query(collection(db, 'blogs.comments'))
-        const unsubscribe = onSnapshot(q, (snapshot) => {
-            const fetchedComments = snapshot.docs.map((doc) => ({
-                id: doc.id,
-                content: doc.data().content,
-                imageUrl: doc.data().imageUrl,
-                createdAt: doc.data().createdAt?.toDate(),
-                userName: doc.data().userName,
-            }))
-            setComments(fetchedComments)
-        })
+    const pathname = usePathname()
+    const router = useRouter()
 
-        return () => unsubscribe()
-    }, [])
+    const [openAuthModal, setOpenAuthModal] = useState(false)
 
-    const handleCommentSubmit = async () => {
-        if (comment.trim() !== '' && currentUser) {
-            let imageUrl = ''
-            if (image) {
-                const imageRef = ref(storage, `comments/${image.name}`)
-                await uploadBytes(imageRef, image)
-                imageUrl = await getDownloadURL(imageRef)
+    const closeModal = () => {
+        setOpenAuthModal(false)
+    }
+
+    const completedAuthentication = () => {
+        setOpenAuthModal(false)
+
+        const redirectUrl = localStorage.getItem('redirect-path')
+
+        if (redirectUrl) {
+            router.push(redirectUrl)
+            localStorage.removeItem('redirect-path')
+        }
+    }
+
+    const handleCommentSubmit: React.FormEventHandler<HTMLFormElement> = async (e) => {
+        e.preventDefault()
+
+        if (!currentUser) {
+            localStorage.setItem('redirect-path', pathname)
+            return setOpenAuthModal(true)
+        }
+
+        setPublishing(true)
+
+        if (comment.trim() === '' || !currentUser) return
+
+        try {
+            const blogRef = doc(db, 'blogs', blog.id)
+
+            const blogDoc = await getDoc(blogRef)
+
+            const currentComments = blogDoc.data()?.comments || []
+
+            const payload: Comment = {
+                id: generateId(),
+                userId: currentUser?.uid ?? undefined,
+                photoURL: currentUser?.photoURL ?? undefined,
+                content: comment,
+                userName: currentUser.displayName || 'Guest',
+                timestamp: new Date().toISOString(),
             }
 
-            await addDoc(collection(db, 'blogs.comments'), {
-                content: comment,
-                imageUrl: imageUrl || null,
-                createdAt: new Date(),
-                userName: currentUser.displayName || 'Anonymous',
-            })
+            await updateDoc(blogRef, { comments: [...currentComments, payload] })
             setComment('')
-            setImage(null)
-        }
-    }
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        if (e.target.files && e.target.files[0]) {
-            setImage(e.target.files[0])
+            setComments([...comments, payload])
+        } catch (error) {
+            console.error('Error adding comment:', error)
+        } finally {
+            setPublishing(false)
         }
-    }
-
-    const handleImageDelete = () => {
-        setImage(null)
     }
 
     const handleCancel = () => {
@@ -75,7 +86,6 @@ const Comment: React.FC = () => {
 
     const handleDiscard = () => {
         setComment('')
-        setImage(null)
         setIsModalOpen(false)
     }
 
@@ -85,64 +95,110 @@ const Comment: React.FC = () => {
 
     return (
         <div>
-            {currentUser ? (
-                <div className="flex flex-col ">
+            <Modal isOpen={openAuthModal} onClose={closeModal} modalOverlayClassname="!bg-opacity-100" modalClassName="!bg-black">
+                <Login closeModal={completedAuthentication} />
+            </Modal>
+
+            <InViewWrapper className={`border-animate border-bottom pb-6`} style={{ '--border-color': '#6B7280' }}>
+                <div className="flex items-center justify-between">
+                    <h1 className="font-bold tracking-wide text-base">{blog.comments.length} Comments</h1>
+                    {currentUser && currentUser.photoURL && (
+                        <Image src={currentUser.photoURL} alt="Profie Photo" width={30} className="rounded-full" height={30} />
+                    )}
+                </div>
+            </InViewWrapper>
+
+            <div className="mt-5">
+                <form className="flex flex-col" onSubmit={handleCommentSubmit}>
                     <TextArea
+                        label=""
                         id="comment"
-                        placeholder="Write your comment here..."
+                        placeholder="Write a comment..."
                         value={comment}
                         onChange={(e) => setComment(e.target.value)}
                         rows={4}
+                        className="border-[rgba(36,36,36)]"
                     />
-                    <div className=" flex items-center justify-end gap-4">
-                        <button
-                            disabled={!comment.trim()}
-                            onClick={handleCancel}
-                            className="bg-gray-600 text-white py-2 px-4 rounded hover:bg-gray-700"
-                        >
-                            Cancel
-                        </button>
-                        <button
-                            disabled={!comment.trim()}
-                            onClick={handleCommentSubmit}
-                            className={` justify-end bg-primary text-black py-2 px-4 rounded hover:text-white`}
-                        >
-                            Publish
-                        </button>
-                    </div>
-                </div>
-            ) : (
-                <p className="text-gray-400">Please log in to add a comment.</p>
-            )}
 
-            <div className="mt-6">
-                <h2 className="font-bold text-lg mb-4">Comments</h2>
-                {comments.length > 0 ? (
-                    comments.map((comment) => (
-                        <div key={comment.id} className="mb-4 p-2 border border-gray-700 rounded flex items-start gap-4">
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                viewBox="0 0 24 24"
-                                fill="currentColor"
-                                className="size-9 p-2 bg-gray-500 text-gray-300 rounded-full"
-                            >
-                                <path
-                                    fillRule="evenodd"
-                                    d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
-                                    clipRule="evenodd"
-                                />
-                            </svg>
-                            <div>
-                                <p className="text-white font-bold">{comment.userName}</p>
-                                <p className="text-white">{comment.content}</p>
-                                {comment.imageUrl && <img src={comment.imageUrl} alt="Comment Image" className="mt-2 w-full h-auto" />}
-                                <small className="text-gray-400">{comment.createdAt?.toLocaleString()}</small>
+                    {currentUser && (
+                        <div className="text-sm flex items-center justify-between gap-4">
+                            <div className="flex gap-4 items-center">
+                                {currentUser.photoURL && (
+                                    <Image src={currentUser.photoURL} alt="Profie Photo" width={30} className="rounded-full" height={30} />
+                                )}
+                                Commenting as {currentUser.displayName}
+                            </div>
+
+                            <div className="flex items-center gap-4">
+                                <button
+                                    disabled={!comment.trim() || publishing}
+                                    onClick={handleCancel}
+                                    className=" text-primary py-2 px-4 hover:opacity-70 cursor-pointer"
+                                >
+                                    Cancel
+                                </button>
+
+                                <button
+                                    disabled={!comment.trim() || publishing}
+                                    type="submit"
+                                    className={`bg-primary text-black py-[6px] px-4 hover:text-white disabled:bg-[rgba(217,217,217,0.5)] disabled:pointer-events-none disabled:cursor-default`}
+                                >
+                                    {publishing ? 'Publishing...' : 'Publish'}
+                                </button>
                             </div>
                         </div>
-                    ))
-                ) : (
-                    <p className="text-gray-400">No comments yet. Be the first to comment!</p>
-                )}
+                    )}
+
+                    {!currentUser && (
+                        <div className="text-sm flex items-center justify-end gap-4">
+                            <button
+                                disabled={!comment.trim() || publishing}
+                                onClick={handleCancel}
+                                className=" text-primary py-2 px-4 hover:opacity-70 cursor-pointer"
+                            >
+                                Cancel
+                            </button>
+
+                            <button
+                                disabled={!comment.trim() || publishing}
+                                type="submit"
+                                className={`bg-primary text-black py-[6px] px-4 hover:text-white disabled:bg-[rgba(217,217,217,0.5)] disabled:pointer-events-none disabled:cursor-default`}
+                            >
+                                {publishing ? 'Publishing...' : 'Publish'}
+                            </button>
+                        </div>
+                    )}
+                </form>
+
+                <div className="mt-6">
+                    {comments.map((comment) => (
+                        <div key={comment.id} className="mb-4 p-2 rounded flex items-start gap-4">
+                            {comment.photoURL && <Image src={comment.photoURL} alt="Profie Photo" width={30} className="rounded-full" height={30} />}
+
+                            {!comment.photoURL && (
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                    className="size-9 p-2 bg-gray-500 text-gray-300 rounded-full"
+                                >
+                                    <path
+                                        fillRule="evenodd"
+                                        d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                                        clipRule="evenodd"
+                                    />
+                                </svg>
+                            )}
+
+                            <div className="text-sm">
+                                <p className="text-white">{comment.userName}</p>
+                                <p>{formatBlogDate(comment?.timestamp).formattedDate}</p>
+
+                                <p className="text-white mt-4">{comment.content}</p>
+                            </div>
+                        </div>
+                    ))}
+                </div>
             </div>
 
             {isModalOpen && (
@@ -163,5 +219,3 @@ const Comment: React.FC = () => {
         </div>
     )
 }
-
-export default Comment

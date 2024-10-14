@@ -10,7 +10,7 @@ export default function LikeButton({ blog }: { blog: Blog }) {
     const { handleLikeBlog, handleUnLikeBlog } = blogService()
 
     const onLikeBlog = async (blogId: string) => {
-        let storage = localStorage.getItem('nextgen-liked-blogs')
+        const storage = localStorage.getItem('nextgen-liked-blogs')
 
         let likedBlogs: string[] = storage ? JSON.parse(storage) : []
 

@@ -1,23 +1,22 @@
-// pages/blog/[id].js
 import Footer from '@/app/components/Footer'
 import Navbar from '@/app/components/Navbar'
+import SignUpButton from '@/app/components/SignUpButton'
 import WrapperContainer from '@/app/components/WrapperContainer'
 import { db } from '@/app/lib/firebase'
 import { formatBlogDate } from '@/app/utils/formatDate'
 import InViewWrapper from '@/app/utils/InViewWrapper'
 import { doc, getDoc } from 'firebase/firestore'
 import { NotFoundBoundary } from 'next/dist/client/components/not-found-boundary'
+import { headers } from 'next/headers'
 import Image from 'next/image'
 import Link from 'next/link'
+import CopyBlogButton from '../CopyBlogButton'
 import { Blog } from '../interface'
-import LikeButton from './likes'
 import Comment from './comments'
-import { useAuth } from '@/app/context/AuthContext'
+import LikeButton from './likes'
 
 export default async function BlogPage({ params }: { params: { id: string } }) {
     const id = params.id
-    // const { currentUser } = useAuth()
-
     if (!id) {
         return <div>Blog ID not found</div>
     }
@@ -31,16 +30,10 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
         ...blogDoc.data(),
         id: blogDoc.id,
     } as Blog
-    //  const handleAddComment = async (blogId: string, comment: Comment) => {
-    //      try {
-    //          const blogRef = doc(db, 'blogs', blogId)
-    //          const blogDoc = await getDoc(blogRef)
-    //          const currentComments = blogDoc.data()?.comments || []
-    //          await updateDoc(blogRef, { comments: [...currentComments, comment] })
-    //      } catch (error) {
-    //          console.error('Error adding comment:', error)
-    //      }
-    //  }
+
+    const headersList = headers()
+
+    const header_url = headersList.get('x-url') || ''
 
     return (
         <div>
@@ -52,9 +45,7 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
                         <Link href={'/blog'} className="hover:text-primary transition-all duration-200 ease-in-out text-sm">
                             All Posts
                         </Link>
-                        {/* <button className="border border-primary text-primary bg-none outline-none px-4 py-2 transition-all duration-300 ease-in-out hover:bg-primary hover:text-black">
-                            Log in / Sign up
-                        </button> */}
+                        <SignUpButton />
                     </div>
                     <div className="border border-gray-800 mt-10 mb-4 py-16 ">
                         <div className="w-[80%] mx-auto">
@@ -86,11 +77,39 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
                             <p className="mt-5 md:mt-10 leading-7 text-lg">{blog.content}</p>
 
                             <InViewWrapper className={`border-animate border-top  mt-7`} style={{ '--border-color': '#6B7280' }}>
-                                <div className="flex items-center gap-4 py-5">
-                                    <p>Icon1</p>
-                                    <p>Icon2</p>
-                                    <p>Icon3</p>
-                                    <p>Icon4</p>
+                                <div className="flex items-center gap-8 py-5">
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="19"
+                                        viewBox="0 0 19 19"
+                                        role="img"
+                                        fill="white"
+                                        className="cursor-pointer hover:fill-primary transition-all duration-300 ease-in-out"
+                                    >
+                                        <path d="M8.08865986,17 L8.08865986,10.2073504 L5.7890625,10.2073504 L5.7890625,7.42194226 L8.08865986,7.42194226 L8.08865986,5.08269399 C8.08865986,3.38142605 9.46779813,2.00228778 11.1690661,2.00228778 L13.5731201,2.00228778 L13.5731201,4.50700008 L11.8528988,4.50700008 C11.3123209,4.50700008 10.874068,4.94525303 10.874068,5.48583089 L10.874068,7.42198102 L13.5299033,7.42198102 L13.1628515,10.2073892 L10.874068,10.2073892 L10.874068,17 L8.08865986,17 Z"></path>
+                                    </svg>
+                                    <svg
+                                        width="19"
+                                        height="19"
+                                        viewBox="0 0 19 19"
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        fill="white"
+                                        className="cursor-pointer hover:fill-primary transition-all duration-300 ease-in-out"
+                                    >
+                                        <path d="M13.303 10.7714L19.1223 4H17.7433L12.6904 9.87954L8.65471 4H4L10.1028 12.8909L4 19.9918H5.37906L10.715 13.7828L14.977 19.9918H19.6317L13.3027 10.7714H13.303ZM11.4142 12.9692L10.7958 12.0839L5.87595 5.03921H7.9941L11.9645 10.7245L12.5829 11.6098L17.7439 18.9998H15.6258L11.4142 12.9696V12.9692Z"></path>
+                                    </svg>
+                                    <svg
+                                        xmlns="http://www.w3.org/2000/svg"
+                                        width="19"
+                                        viewBox="0 0 19 19"
+                                        role="img"
+                                        fill="white"
+                                        className="cursor-pointer hover:fill-primary transition-all duration-300 ease-in-out"
+                                    >
+                                        <path d="M17,17 L13.89343,17 L13.89343,12.1275733 C13.89343,10.9651251 13.87218,9.47069458 12.2781416,9.47069458 C10.660379,9.47069458 10.4126568,10.7365137 10.4126568,12.0434478 L10.4126568,17 L7.30623235,17 L7.30623235,6.98060885 L10.2883591,6.98060885 L10.2883591,8.3495072 L10.3296946,8.3495072 C10.7445056,7.56190587 11.7585364,6.7312941 13.2709225,6.7312941 C16.418828,6.7312941 17,8.80643844 17,11.5041407 L17,17 Z M3.80289931,5.61098151 C2.80647978,5.61098151 2,4.80165627 2,3.80498046 C2,2.80903365 2.80647978,2 3.80289931,2 C4.79669898,2 5.60434314,2.80903365 5.60434314,3.80498046 C5.60434314,4.80165627 4.79669898,5.61098151 3.80289931,5.61098151 Z M2.24786773,17 L2.24786773,6.98060885 L5.35662096,6.98060885 L5.35662096,17 L2.24786773,17 Z"></path>
+                                    </svg>
+
+                                    <CopyBlogButton url={header_url} />
                                 </div>
                             </InViewWrapper>
 
@@ -112,12 +131,9 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
                         See all
                     </Link>
 
-                    <div className="border border-gray-800 mt-10 mb-4 py-10 ">
+                    <div className="border border-[rgba(36,36,36)] mt-10 mb-4 pt-5 pb-10 ">
                         <div className="w-[80%] mx-auto">
-                            <InViewWrapper className={`border-animate border-bottom pb-4`} style={{ '--border-color': '#1f2937' }}>
-                                <h1 className="font-bold tracking-wide text-base">Comments</h1>
-                                <Comment />
-                            </InViewWrapper>
+                            <Comment blog={blog} />
                         </div>
                     </div>
                 </div>
