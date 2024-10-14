@@ -8,14 +8,7 @@ interface CopyBlogButtonProps {
 
 const CopyBlogButton: React.FC<CopyBlogButtonProps> = ({ url }) => {
     const copyToClipboard = () => {
-        navigator.clipboard
-            .writeText(url)
-            .then(() => {
-                alert(`URL copied to clipboard: ${url}`)
-            })
-            .catch((err) => {
-                console.error('Failed to copy:', err)
-            })
+        navigator.clipboard.writeText(url)
     }
 
     return (

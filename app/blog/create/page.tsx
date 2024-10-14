@@ -102,10 +102,10 @@ function Testing() {
                             value={blogForm.title}
                             onChange={(e) => handleChangeValue('title', e.target.value)}
                         />
-                        <Input
+                        <TextArea
+                            rows={8}
                             required
                             label="Blog Introductory Description"
-                            // minLength={150}
                             id="description"
                             placeholder="Enter Blog Description/Introduction"
                             value={blogForm.introductory}

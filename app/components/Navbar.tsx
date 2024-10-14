@@ -29,9 +29,9 @@ function Navbar() {
         <WrapperContainer className="md:mt-10 mt-8">
             <InViewWrapper className="animate-fadeIn md:relative md:pb-2 border-animate md:border-bottom">
                 <nav className="relative z-20 flex items-center justify-between md:px-4">
-                    <h1 className="text-lg font-semibold">NextGen Business Innovators</h1>
+                    <h1 className="md:text-lg text-base font-semibold">NextGen Business Innovators</h1>
 
-                    <div className="md:flex items-center gap-8 hidden ">
+                    <div className="md:flex items-center gap-4 lg:gap-8 hidden ">
                         <Link href={'/'} className={`${currentPath === '/' ? 'text-[#EFFE8A]' : 'text-white hover:text-[#effe8a]'}`}>
                             Home
                         </Link>

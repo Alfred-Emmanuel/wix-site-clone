@@ -86,7 +86,7 @@ function Page() {
             <Footer />
 
             <Modal title="Consultation Booking" isOpen={isOpen} onClose={closeModal}>
-                <CustomPaymentForm />
+                <CustomPaymentForm amount={100} closeModal={closeModal} />
 
                 <InViewWrapper className="border-animate border-top py-5 mt-10" style={{ '--border-color': '#5e5e5e' }}>
                     <div className=" flex justify-end">

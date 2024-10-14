@@ -11,12 +11,12 @@ const firebaseConfig = {
     // messagingSenderId: '687710179832',
     // appId: '1:687710179832:web:ad0b4142f25bac94f3860d',
 
-      apiKey: 'AIzaSyAeh9Mt6OIRsWK7UqGXjDhqFOdFD-kuE_A',
-        authDomain: 'ahmad-ca641.firebaseapp.com',
-        projectId: 'ahmad-ca641',
-        storageBucket: 'ahmad-ca641.appspot.com',
-        messagingSenderId: '818227343701',
-        appId: '1:818227343701:web:10fc8b05727319162bbfdc',
+    apiKey: 'AIzaSyAeh9Mt6OIRsWK7UqGXjDhqFOdFD-kuE_A',
+    authDomain: 'ahmad-ca641.firebaseapp.com',
+    projectId: 'ahmad-ca641',
+    storageBucket: 'ahmad-ca641.appspot.com',
+    messagingSenderId: '818227343701',
+    appId: '1:818227343701:web:10fc8b05727319162bbfdc',
 }
 
 // Initialize Firebase
