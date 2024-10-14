@@ -1,12 +1,15 @@
 'use client'
 import Image from 'next/image'
+import { useState } from 'react'
 import NewsImg2 from './assets/news-image-2.jpg'
 import NewsImg from './assets/news-img-1.jpg'
 import NewsImg3 from './assets/news-img-3.jpg'
 import HeroBg1 from './assets/pc-bg-1.png'
 import HeroBg2 from './assets/pc-bg-2.jpg'
 import Footer from './components/Footer'
+import Modal from './components/Modal'
 import Navbar from './components/Navbar'
+import CustomPaymentForm from './components/Payment'
 import { VideoComponent } from './components/VideoComponents'
 import WrapperContainer from './components/WrapperContainer'
 import InViewWrapper from './utils/InViewWrapper'
@@ -44,6 +47,15 @@ export default function Home() {
     ]
 
     handleUserId()
+
+    const [isOpen, setIsOpen] = useState(false)
+
+    const closeModal = () => setIsOpen(false)
+
+    const setBooking = (id: number) => {
+        console.log(id)
+        setIsOpen(true)
+    }
 
     return (
         <main>
@@ -148,7 +160,10 @@ export default function Home() {
                                         <p className="md:hidden text-[1.05rem] mb-2">1hr</p>
                                         <p className="text-[1.05rem]">$180</p>
                                     </div>
-                                    <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-black hover:text-white cursor-pointer">
+                                    <h5
+                                        onClick={() => setBooking(1)}
+                                        className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-black hover:text-white cursor-pointer"
+                                    >
                                         Book Now
                                     </h5>
                                 </div>
@@ -163,7 +178,10 @@ export default function Home() {
                                         <p className="md:hidden text-[1.05rem] mb-2">1hr</p>
                                         <p className="text-[1.05rem]">$180</p>
                                     </div>
-                                    <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-black hover:text-white cursor-pointer">
+                                    <h5
+                                        onClick={() => setBooking(1)}
+                                        className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-black hover:text-white cursor-pointer"
+                                    >
                                         Book Now
                                     </h5>
                                 </div>
@@ -178,7 +196,10 @@ export default function Home() {
                                         <p className="md:hidden text-[1.05rem] mb-2">1hr</p>
                                         <p className="text-[1.05rem]">$180</p>
                                     </div>
-                                    <h5 className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-black hover:text-white cursor-pointer">
+                                    <h5
+                                        onClick={() => setBooking(1)}
+                                        className="border text-center md:text-left border-black md:self-start px-4 py-2 transition-all duration-300 ease-in-out hover:bg-black hover:text-white cursor-pointer"
+                                    >
                                         Book Now
                                     </h5>
                                 </div>
@@ -242,6 +263,18 @@ export default function Home() {
             </section>
 
             <Footer />
+
+            <Modal title="Consultation Booking" isOpen={isOpen} onClose={closeModal}>
+                <CustomPaymentForm amount={100} closeModal={closeModal} />
+
+                <InViewWrapper className="border-animate border-top py-5 mt-10" style={{ '--border-color': '#5e5e5e' }}>
+                    <div className=" flex justify-end">
+                        <button onClick={closeModal} className="px-4 py-2 bg-gray-200 text-gray-800 rounded hover:bg-gray-300 transition-colors mr-2">
+                            Cancel
+                        </button>
+                    </div>
+                </InViewWrapper>
+            </Modal>
         </main>
     )
 }
