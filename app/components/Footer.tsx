@@ -5,7 +5,7 @@ function Footer() {
         <footer className='bg-white text-black pt-10 pb-16 md:pt-24 md:pb-20' >
             <WrapperContainer className="flex gap-8 md:gap-0 items-center flex-col md:flex-row">
                 <div className='md:w-[60%] self-start '>
-                    <h1 className='font-bold text-3xl w- md:w-[35%]'>NextGen Business Innovators</h1>
+                    <h1 className='font-bold text-3xl w- lg:w-[35%]'>NextGen Business Innovators</h1>
                 </div>
                 <div className='md:w-[40%]'>
                     <div>
@@ -25,7 +25,7 @@ function Footer() {
                             <p className='text-lg text-gray-700 md:text-[1rem]'>Enter Your Email Address *</p>
                             <form className='flex flex-col md:flex-row gap-4 md:gap-0 w-full md:justify-between md:items-end mt-2'>
                                 <input type='text' className='border-b border-black outline-none px-2 py-3 w-[90%] md:w-[55%]' />
-                                <button className='px-4 w-[90%] py-4 md:px-0 md:w-[40%] md:py-3 self-start bg-none border border-black rounded-full transition-all duration-300 ease-in-out hover:bg-black hover:text-white hover:border-none'> Subscribe </button>
+                                <button className='px-4 w-[90%] text-lg md:text-base py-4 md:px-0 md:w-[40%] md:py-3 self-start bg-none border border-black rounded-full transition-all duration-300 ease-in-out hover:bg-black hover:text-white hover:border-none'> Subscribe </button>
                             </form>
                         </div>
                     </div>

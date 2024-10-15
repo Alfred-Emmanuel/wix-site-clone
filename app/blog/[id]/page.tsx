@@ -1,39 +1,44 @@
-import Footer from '@/app/components/Footer'
-import Navbar from '@/app/components/Navbar'
-import SignUpButton from '@/app/components/SignUpButton'
-import WrapperContainer from '@/app/components/WrapperContainer'
-import { db } from '@/app/lib/firebase'
-import { formatBlogDate } from '@/app/utils/formatDate'
-import InViewWrapper from '@/app/utils/InViewWrapper'
-import { doc, getDoc } from 'firebase/firestore'
-import { NotFoundBoundary } from 'next/dist/client/components/not-found-boundary'
-import { headers } from 'next/headers'
-import Image from 'next/image'
-import Link from 'next/link'
-import CopyBlogButton from '../CopyBlogButton'
-import { Blog } from '../interface'
-import Comment from './comments'
-import LikeButton from './likes'
+import Footer from '@/app/components/Footer';
+import Navbar from '@/app/components/Navbar';
+import SignUpButton from '@/app/components/SignUpButton';
+import WrapperContainer from '@/app/components/WrapperContainer';
+import { db } from '@/app/lib/firebase';
+import { blogService } from '@/app/lib/firebase/blogService';
+import { formatBlogDate } from '@/app/utils/formatDate';
+import InViewWrapper from '@/app/utils/InViewWrapper';
+import { doc, getDoc } from 'firebase/firestore';
+import { NotFoundBoundary } from 'next/dist/client/components/not-found-boundary';
+import { headers } from 'next/headers';
+import Image from 'next/image';
+import Link from 'next/link';
+import CopyBlogButton from '../CopyBlogButton';
+import { Blog } from '../interface';
+import Comment from './comments';
+import LikeButton from './likes';
 
 export default async function BlogPage({ params }: { params: { id: string } }) {
-    const id = params.id
+    const id = params.id;
     if (!id) {
-        return <div>Blog ID not found</div>
+        return <div>Blog ID not found</div>;
     }
 
-    const blogRef = doc(db, 'blogs', id)
-    const blogDoc = await getDoc(blogRef)
+    const blogRef = doc(db, 'blogs', id);
+    const blogDoc = await getDoc(blogRef);
 
-    if (!blogDoc.exists()) return <NotFoundBoundary>Invalid Blog</NotFoundBoundary>
+    if (!blogDoc.exists()) return <NotFoundBoundary>Invalid Blog</NotFoundBoundary>;
+
+    const { handleIncreaseView } = blogService();
+
+    await handleIncreaseView(blogDoc.id);
 
     const blog = {
         ...blogDoc.data(),
         id: blogDoc.id,
-    } as Blog
+    } as Blog;
 
-    const headersList = headers()
+    const headersList = headers();
 
-    const header_url = headersList.get('x-url') || ''
+    const header_url = headersList.get('x-url') || '';
 
     return (
         <div>
@@ -141,5 +146,5 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
 
             <Footer />
         </div>
-    )
+    );
 }

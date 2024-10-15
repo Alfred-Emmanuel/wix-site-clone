@@ -29,9 +29,9 @@ function Navbar() {
         <WrapperContainer className="md:mt-10 mt-8">
             <InViewWrapper className="animate-fadeIn md:relative md:pb-2 border-animate md:border-bottom">
                 <nav className="relative z-20 flex items-center justify-between md:px-4">
-                    <h1 className="md:text-lg text-base font-semibold">NextGen Business Innovators</h1>
+                    <h1 className="lg:text-lg text-base font-semibold">NextGen Business Innovators</h1>
 
-                    <div className="md:flex items-center gap-4 lg:gap-8 hidden ">
+                    <div className="md:flex items-center gap-4 sm:text-sm lg:text-base lg:gap-8 hidden ">
                         <Link href={'/'} className={`${currentPath === '/' ? 'text-[#EFFE8A]' : 'text-white hover:text-[#effe8a]'}`}>
                             Home
                         </Link>
@@ -41,8 +41,8 @@ function Navbar() {
                         <Link href={'/bookings'} className={`${currentPath === '/bookings' ? 'text-[#EFFE8A]' : 'text-white hover:text-[#effe8a]'}`}>
                             Book Online
                         </Link>
-                        <Link href={'/pricing'} className={`${currentPath === '/pricing' ? 'text-[#EFFE8A]' : 'text-white hover:text-[#effe8a]'}`}>
-                            Plans & Pricing
+                        <Link href={'/about-us'} className={`${currentPath === '/pricing' ? 'text-[#EFFE8A]' : 'text-white hover:text-[#effe8a]'}`}>
+                           About Us
                         </Link>
                         <div className="relative text-white hover:text-[#effe8a]">
                             <input
