@@ -41,7 +41,7 @@ function Navbar() {
                         <Link href={'/bookings'} className={`${currentPath === '/bookings' ? 'text-[#EFFE8A]' : 'text-white hover:text-[#effe8a]'}`}>
                             Book Online
                         </Link>
-                        <Link href={'/about-us'} className={`${currentPath === '/pricing' ? 'text-[#EFFE8A]' : 'text-white hover:text-[#effe8a]'}`}>
+                        <Link href={'/about-us'} className={`${currentPath === '/about-us' ? 'text-[#EFFE8A]' : 'text-white hover:text-[#effe8a]'}`}>
                            About Us
                         </Link>
                         <div className="relative text-white hover:text-[#effe8a]">

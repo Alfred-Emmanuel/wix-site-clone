@@ -192,9 +192,9 @@ export default async function Home() {
                                 efficiency and market competitiveness. We offer customized solutions to address your company&apos;s strengths,
                                 weaknesses, and opportunities. With our help, you can keep your business competitive, successful, and growth-oriented.
                             </p>
-                            <button className="bg-[#effe8a] text-black self-start px-5 py-3 rounded-full border border-transparent transition-all duration-300 ease-in-out hover:bg-transparent hover:border-primary hover:text-primary">
+                            <Link href={"/about-us"} className="bg-[#effe8a] text-black self-start px-5 py-3 rounded-full border border-transparent transition-all duration-300 ease-in-out hover:bg-transparent hover:border-primary hover:text-primary">
                                 Learn More
-                            </button>
+                            </Link>
                         </div>
                     </div>
                 </WrapperContainer>
