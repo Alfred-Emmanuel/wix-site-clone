@@ -74,7 +74,7 @@ async function Page() {
             <Navbar />
 
             <WrapperContainer>
-                <div className="mt-5 md:mt-10 md:w-[85%] ld:w-[65%] mx-auto md:pb-20 pb-10 animate-fadeIn">
+                <div className="mt-5 md:mt-10 md:w-[85%] lg:w-[65%] mx-auto md:pb-20 pb-10 animate-fadeIn">
                     <div className="flex items-center justify-between">
                         <Link href={'/blog'} className="hover:text-primary transition-all duration-200 ease-in-out text-sm">
                             All Posts
