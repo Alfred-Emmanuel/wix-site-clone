@@ -78,7 +78,15 @@ export default async function BlogPage({ params }: { params: { id: string } }) {
                             </div>
                             <h1 className="md:mt-8 text-2xl font-bold">{blog.title}</h1>
                             <p className="mt-5  leading-7 text-lg">{blog.introductory}</p>
-                            <Image src={blog.image} width={100} height={100} alt="news" className="h-[300px] md:h-[500px] w-full object-cover my-5" />
+                            <Image
+                                src={blog.image}
+                                width={600}
+                                height={600}
+                                priority
+                                alt="news"
+                                className="h-[300px] md:h-[500px] w-full object-cover my-5"
+                            />
+
                             <p className="mt-5 md:mt-10 leading-7 text-lg">{blog.content}</p>
 
                             <InViewWrapper className={`border-animate border-top  mt-7`} style={{ '--border-color': '#6B7280' }}>
